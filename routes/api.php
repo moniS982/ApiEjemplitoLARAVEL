@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UsuarioController;
 use App\Http\Controllers\API\RolController;
@@ -34,11 +35,18 @@ Route::apiResource('inscripciones', InscripcionController::class);
 Route::apiResource('calificaciones', CalificacionController::class);
 Route::apiResource('usuario-roles', UsuarioRolController::class);
 
+// Esta ruta debe estar libre para probar la conexión
 Route::get('/test-db', function () {
     try {
         DB::connection()->getPdo();
-        return "Conexión exitosa a: " . DB::connection()->getDatabaseName();
+        return response()->json([
+            "status" => "Conexión exitosa",
+            "database" => DB::connection()->getDatabaseName()
+        ]);
     } catch (\Exception $e) {
-        return "Error de conexión: " . $e->getMessage();
+        return response()->json([
+            "status" => "Error de conexión",
+            "error" => $e->getMessage()
+        ], 500);
     }
 });
