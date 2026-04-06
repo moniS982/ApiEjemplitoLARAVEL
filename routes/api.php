@@ -19,7 +19,8 @@ use App\Http\Controllers\API\UsuarioRolController;
 
 Route::get('/', function () {
     return response()->json([
-        'status' => 'API funcionando correctamente'
+        'status' => 'API funcionando correctamente',
+        'proyecto' => '---- '
     ]);
 });
 
@@ -31,3 +32,4 @@ Route::apiResource('grupos', GrupoController::class);
 Route::apiResource('asignaciones', AsignacionController::class);
 Route::apiResource('inscripciones', InscripcionController::class);
 Route::apiResource('calificaciones', CalificacionController::class);
+Route::apiResource('usuario-roles', UsuarioRolController::class);
