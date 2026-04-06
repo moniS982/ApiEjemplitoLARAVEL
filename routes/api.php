@@ -35,18 +35,3 @@ Route::apiResource('inscripciones', InscripcionController::class);
 Route::apiResource('calificaciones', CalificacionController::class);
 Route::apiResource('usuario-roles', UsuarioRolController::class);
 
-// Esta ruta debe estar libre para probar la conexión
-Route::get('/test-db', function () {
-    try {
-        DB::connection()->getPdo();
-        return response()->json([
-            "status" => "Conexión exitosa",
-            "database" => DB::connection()->getDatabaseName()
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            "status" => "Error de conexión",
-            "error" => $e->getMessage()
-        ], 500);
-    }
-});
