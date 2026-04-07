@@ -5,7 +5,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.0",
         "ext-mysqlnd": "*",
         "ext-pdo_mysql": "*",
         "guzzlehttp/guzzle": "^7.2",
@@ -55,13 +55,16 @@
         }
     },
     "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+        "pestphp/pest-plugin": true,
+        "php-http/discovery": true
+    },
+    "platform": {
+        "php": "8.0.30"
+    }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
