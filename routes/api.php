@@ -12,6 +12,8 @@ use App\Http\Controllers\API\InscripcionController;
 use App\Http\Controllers\API\CalificacionController;
 use App\Http\Controllers\API\UsuarioRolController;
 
+use App\Models\Usuario;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +25,10 @@ Route::get('/', function () {
         'status' => 'API funcionando correctamente',
         'proyecto' => '---- '
     ]);
+});
+
+Route::get('/', function () {
+    return Usuario::all(); 
 });
 
 Route::apiResource('usuarios', UsuarioController::class);
