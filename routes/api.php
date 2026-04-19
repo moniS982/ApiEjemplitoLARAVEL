@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UsuarioController;
 use App\Http\Controllers\API\RolController;
 use App\Http\Controllers\API\CarreraController;
@@ -12,32 +12,33 @@ use App\Http\Controllers\API\InscripcionController;
 use App\Http\Controllers\API\CalificacionController;
 use App\Http\Controllers\API\UsuarioRolController;
 
-use App\Models\Usuario;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
-
 Route::get('/', function () {
     return response()->json([
-        'status' => 'API funcionando correctamente',
-        'proyecto' => '---- '
+        'status' => 'API funcionando correctamente'
     ]);
 });
 
-Route::get('/', function () {
-    return Usuario::all(); 
+//  Públicas
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+  Route::apiResource('usuarios', UsuarioController::class);
+    Route::apiResource('roles', RolController::class);
+    Route::apiResource('carreras', CarreraController::class);
+    Route::apiResource('materias', MateriaController::class);
+    Route::apiResource('grupos', GrupoController::class);
+    Route::apiResource('asignaciones', AsignacionController::class);
+    Route::apiResource('inscripciones', InscripcionController::class);
+    Route::apiResource('calificaciones', CalificacionController::class);
+    Route::apiResource('usuario-roles', UsuarioRolController::class);
+  
+
+//  Protegidas
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    //pase las rutas en publicas
+  
+
 });
-
-Route::apiResource('usuarios', UsuarioController::class);
-Route::apiResource('roles', RolController::class);
-Route::apiResource('carreras', CarreraController::class);
-Route::apiResource('materias', MateriaController::class);
-Route::apiResource('grupos', GrupoController::class);
-Route::apiResource('asignaciones', AsignacionController::class);
-Route::apiResource('inscripciones', InscripcionController::class);
-Route::apiResource('calificaciones', CalificacionController::class);
-Route::apiResource('usuario-roles', UsuarioRolController::class);
-

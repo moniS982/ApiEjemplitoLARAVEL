@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use HasApiTokens;
+
     protected $table = 'usuarios';
 
     protected $fillable = [
@@ -17,6 +19,10 @@ class Usuario extends Model
         'password',
         'telefono',
         'activo'
+    ];
+
+    protected $hidden = [
+        'password',
     ];
 
     public function roles()
