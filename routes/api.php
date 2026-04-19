@@ -40,5 +40,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //pase las rutas en publicas
   
-
+ // Test de sincronizacion final
 });
